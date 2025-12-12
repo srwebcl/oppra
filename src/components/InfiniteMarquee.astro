@@ -1,0 +1,126 @@
+---
+
+---
+
+<div
+    class="relative flex overflow-x-hidden bg-slate-900 border-y border-slate-800 py-3"
+>
+    <div
+        class="py-1 animate-marquee whitespace-nowrap flex items-center gap-12 text-slate-400 font-bold uppercase tracking-[0.2em] text-xs"
+    >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Agenda
+            Visita Técnica</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Ingeniería
+            de Precisión</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Santiago •
+            Viña del Mar • Rancagua</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Turnos de
+            Emergencia 24/7</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Fabricación
+            CNC</span
+        >
+
+        {/* DUPLICATE FOR SEAMLESS LOOP */}
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Agenda
+            Visita Técnica</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Ingeniería
+            de Precisión</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Santiago •
+            Viña del Mar • Rancagua</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Turnos de
+            Emergencia 24/7</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Fabricación
+            CNC</span
+        >
+    </div>
+
+    <div
+        class="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-12 text-slate-400 font-bold uppercase tracking-[0.2em] text-xs py-1"
+    >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Agenda
+            Visita Técnica</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Ingeniería
+            de Precisión</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Santiago •
+            Viña del Mar • Rancagua</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Turnos de
+            Emergencia 24/7</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Fabricación
+            CNC</span
+        >
+
+        {/* DUPLICATE FOR SEAMLESS LOOP */}
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Agenda
+            Visita Técnica</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Ingeniería
+            de Precisión</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Santiago •
+            Viña del Mar • Rancagua</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Turnos de
+            Emergencia 24/7</span
+        >
+        <span class="flex items-center gap-4"
+            ><span class="w-1.5 h-1.5 rounded-full bg-accent"></span>Fabricación
+            CNC</span
+        >
+    </div>
+</div>
+
+<style>
+    .animate-marquee {
+        animation: marquee 25s linear infinite;
+    }
+    .animate-marquee2 {
+        animation: marquee2 25s linear infinite;
+    }
+    @keyframes marquee {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    @keyframes marquee2 {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(0%);
+        }
+    }
+</style>

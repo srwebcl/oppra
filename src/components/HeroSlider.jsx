@@ -71,7 +71,7 @@ export default function HeroSlider({ title, subtitle, ctaText, ctaLink }) {
                         <div className="text-4xl md:text-5xl lg:text-7xl font-semibold text-white mb-4 leading-tight tracking-tight drop-shadow-2xl">
                             <span className="block text-slate-100 mb-1">Soluciones en</span>
                             {/* Smooth Slide Transition Container */}
-                            <div className="relative h-[1.5em] overflow-visible">
+                            <div className="relative h-[2em] min-h-[60px] md:h-[1.5em] overflow-visible">
                                 <AnimatePresence mode="popLayout">
                                     <motion.span
                                         key={words[wordIndex]}
@@ -79,7 +79,7 @@ export default function HeroSlider({ title, subtitle, ctaText, ctaLink }) {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -40 }}
                                         transition={{ duration: 0.6, ease: "circOut" }}
-                                        className="block bg-clip-text text-transparent bg-gradient-to-r from-accent via-orange-400 to-amber-200 absolute top-0 left-0 w-full truncate pb-2"
+                                        className="block bg-clip-text text-transparent bg-gradient-to-r from-accent via-orange-400 to-amber-200 absolute top-0 left-0 w-max whitespace-normal md:whitespace-nowrap leading-tight pb-2 pr-8"
                                     >
                                         {words[wordIndex]}
                                     </motion.span>

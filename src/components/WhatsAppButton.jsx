@@ -7,29 +7,33 @@ export default function WhatsAppButton() {
     const [isVisible, setIsVisible] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
 
-    const PHONE_NUMBER = "569XXXXXXXX";
+    const PHONE_NUMBER = "56957891186";
 
     // Agent Persona
     const agentName = "Soporte OPPRA";
     const avatarUrl = "/images/team.png"; // Using existing team image
 
     useEffect(() => {
-        // Check if user has already closed the chat in this session
-        if (sessionStorage.getItem('whatsapp_closed')) return;
+        // DEBUG: Commented out to ensure user sees the bubble even if closed previously
+        // if (sessionStorage.getItem('whatsapp_closed')) return;
 
         // Dynamic message logic
         const path = window.location.pathname;
-        let targetMsg = "Hola, ¿en qué podemos ayudarte?";
+        let targetMsg = "¿Consulta técnica? Estamos en línea para asesorarle.";
 
         if (path.includes('diseno-fabricacion')) {
-            targetMsg = "¿Buscas mecanizado o estructuras metálicas?";
+            targetMsg = "¿Necesita estructuras o mecanizado urgente? Hable con ingeniería.";
         } else if (path.includes('tableros-electricos')) {
-            targetMsg = "¿Necesitas cotizar tableros eléctricos?";
+            targetMsg = "¿Cotizando tableros certificados SEC? Envíenos sus requerimientos.";
+        } else if (path.includes('contacto')) {
+            targetMsg = "¿Dudas técnicas? Hable directamente con nuestros ingenieros.";
+        } else if (path === '/' || path === '') {
+            targetMsg = "Expertos en Ingeniería Mecánica y Eléctrica. ¿Hablamos?";
         }
 
         setFullMessage(targetMsg);
 
-        // DELAY: Wait 6s (less intrusive) -> Typing -> Show Message
+        // DELAY: Wait 1s (fast) -> Typing -> Show Message
         const timer = setTimeout(() => {
             setIsVisible(true);
             setIsTyping(true);
@@ -38,9 +42,9 @@ export default function WhatsAppButton() {
             setTimeout(() => {
                 setIsTyping(false);
                 setMessage(targetMsg);
-            }, 1000); // Faster typing
+            }, 1000); // 1s typing
 
-        }, 6000);
+        }, 1000);
 
         return () => clearTimeout(timer);
     }, []);
