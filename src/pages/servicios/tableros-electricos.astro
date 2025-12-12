@@ -1,0 +1,143 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import QuickQuoteForm from "../../components/QuickQuoteForm.jsx";
+---
+
+<BaseLayout
+    title="Tableros Eléctricos Industriales | OPPRA"
+    description="Fabricación y montaje de tableros eléctricos certificados. Automatización, fuerza y control para industria."
+>
+    <Hero
+        title="Tableros Eléctricos y Automatización Industrial"
+        subtitle="Diseño, montaje y certificación de tableros eléctricos. Control y fuerza bajo norma SEC."
+        ctaText="Cotizar Proyecto Eléctrico"
+        imagePath="/images/hero_electrical.png"
+    />
+
+    <section class="py-16 md:py-24 bg-white relative">
+        <div class="container-custom">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-8">
+                    <div class="mb-10">
+                        <img
+                            src="/images/service_electrical.png"
+                            alt="Tablero Eléctrico de Automatización"
+                            class="rounded-xl shadow-xl w-full h-[400px] object-cover mb-8"
+                        />
+
+                        <h2 class="text-4xl font-extrabold mb-6">
+                            <span class="text-gradient"
+                                >Control y Potencia bajo Norma</span
+                            >
+                        </h2>
+                        <p class="text-secondary mb-6 text-lg">
+                            La seguridad eléctrica no es opcional. En OPPRA
+                            actualizamos sus instalaciones para cumplir con la
+                            normativa SEC vigente, protegiendo sus valiosos
+                            equipos y, lo más importante, a su personal.
+                        </p>
+                        <p class="text-secondary mb-8 text-lg">
+                            Desde tableros de distribución de fuerza hasta
+                            complejos sistemas de automatización con PLC,
+                            entregamos soluciones "llave en mano" probadas y
+                            documentadas.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                        {
+                            [
+                                {
+                                    title: "Tableros de Fuerza",
+                                    desc: "Distribución de potencia segura, ordenada y rotulada.",
+                                },
+                                {
+                                    title: "Automatización & Control",
+                                    desc: "Integración de PLC, HMI y Variadores de Frecuencia.",
+                                },
+                                {
+                                    title: "Normalización SEC",
+                                    desc: "Regularización de instalaciones, peinado de cables y etiquetado.",
+                                },
+                                {
+                                    title: "Documentación As-Built",
+                                    desc: "Entrega de planos eléctricos actualizados y memorias de cálculo.",
+                                },
+                            ].map((item) => (
+                                <div class="bg-slate-50 p-5 rounded-lg border-l-4 border-accent shadow-sm hover:shadow-md transition-shadow">
+                                    <h4 class="font-bold text-primary-dark text-lg mb-2">
+                                        {item.title}
+                                    </h4>
+                                    <p class="text-sm text-secondary">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <div
+                        class="bg-blue-50 border border-blue-100 rounded-lg p-6"
+                    >
+                        <h3
+                            class="font-bold text-primary-dark mb-2 flex items-center"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-primary mr-2"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                            Servicio de Emergencia
+                        </h3>
+                        <p class="text-sm text-secondary">
+                            Realizamos diagnósticos de fallas en tableros de
+                            control y reconexión de urgencia para minimizar
+                            tiempos muertos.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Sticky Sidebar -->
+                <div class="lg:col-span-4">
+                    <div class="sticky top-24">
+                        <QuickQuoteForm
+                            client:load
+                            serviceName="Tableros Eléctricos"
+                        />
+                        <div
+                            class="mt-8 grid grid-cols-3 gap-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500"
+                        >
+                            <!-- Trust Badges placeholders (Simulated) -->
+                            <div
+                                class="text-center text-xs text-slate-400 border border-slate-200 bg-slate-50 p-2 rounded"
+                            >
+                                Certificación SEC
+                            </div>
+                            <div
+                                class="text-center text-xs text-slate-400 border border-slate-200 bg-slate-50 p-2 rounded"
+                            >
+                                Norma ISO
+                            </div>
+                            <div
+                                class="text-center text-xs text-slate-400 border border-slate-200 bg-slate-50 p-2 rounded"
+                            >
+                                Garantía Total
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

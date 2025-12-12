@@ -1,0 +1,115 @@
+---
+import "../styles/global.css";
+import GTMHead from "../components/GTMHead.astro";
+import GTMBody from "../components/GTMBody.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.jsx";
+
+interface Props {
+    title: string;
+    description?: string;
+    image?: string;
+}
+
+const {
+    title,
+    description = "Soluciones Industriales: Diseño, Fabricación y Tableros Eléctricos en Chile.",
+    image = "/images/og-image.jpg",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- Google Fonts: Outfit -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+
+        <title>{title}</title>
+        <GTMHead />
+    </head>
+    <body
+        class="flex flex-col min-h-screen font-sans text-slate-800 bg-slate-50 selection:bg-accent selection:text-white"
+    >
+        <GTMBody />
+        <Navbar />
+        <main class="flex-grow">
+            <slot />
+        </main>
+        <Footer />
+
+        <div id="whatsapp-widget">
+            <WhatsAppButton client:idle />
+        </div>
+
+        <!-- Scroll Animation Script -->
+        <script>
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1,
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate-slide-up-fade");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const animatedElements =
+                    document.querySelectorAll(".animate-on-scroll");
+                animatedElements.forEach((el) => observer.observe(el));
+            });
+        </script>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "OPPRA Industrial",
+                "image": "https://oppra.cl/images/logo.png",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Santiago",
+                    "addressRegion": "Región Metropolitana",
+                    "addressCountry": "CL"
+                },
+                "url": "https://oppra.cl",
+                "telephone": "+56912345678",
+                "priceRange": "$$$",
+                "areaServed": [
+                    "Región Metropolitana",
+                    "Valparaíso",
+                    "O'Higgins"
+                ]
+            }
+        </script>
+    </body>
+</html>
