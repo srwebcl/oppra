@@ -79,7 +79,7 @@ export default function HeroSlider({ title, subtitle, ctaText, ctaLink }) {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -40 }}
                                         transition={{ duration: 0.6, ease: "circOut" }}
-                                        className="block bg-clip-text text-transparent bg-gradient-to-r from-accent via-orange-400 to-amber-200 absolute top-0 left-0 w-max whitespace-normal md:whitespace-nowrap leading-tight pb-2 pr-8"
+                                        className="block bg-clip-text text-transparent bg-gradient-to-r from-accent via-orange-400 to-amber-200 absolute top-0 left-0 w-full md:w-max whitespace-normal md:whitespace-nowrap leading-tight pb-2 pr-8"
                                     >
                                         {words[wordIndex]}
                                     </motion.span>
