@@ -49,6 +49,7 @@ const {
         <meta property="twitter:image" content={image} />
 
         <title>{title}</title>
+        <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
         <GTMHead />
     </head>
     <body

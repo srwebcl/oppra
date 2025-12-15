@@ -5,6 +5,7 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://oppra.cl',
     integrations: [
         react(),
         tailwind({
