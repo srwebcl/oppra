@@ -4,88 +4,55 @@ import { Resend } from 'resend';
 export const POST: APIRoute = async ({ request }) => {
     try {
         const data = await request.json();
-        const { name, email, phone, message } = data;
 
-        // Validar datos básicos
-        if (!name || !email || !message) {
+        // 1. Validación estricta de entrada
+        if (!data.name || !data.email || !data.message) {
             return new Response(JSON.stringify({
                 success: false,
-                message: 'Faltan campos requeridos: Nombre, Email y Mensaje son obligatorios.'
-            }), {
-                status: 400,
-                headers: { "Content-Type": "application/json" }
-            });
+                message: 'Faltan campos requeridos.'
+            }), { status: 400 });
         }
 
-        // Validación de email simple
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return new Response(JSON.stringify({
-                success: false,
-                message: 'Formato de email inválido.'
-            }), {
-                status: 400,
-                headers: { "Content-Type": "application/json" }
-            });
-        }
+        // 2. Inicializar Resend con la variable de entorno
+        const resend = new Resend(import.meta.env.RESEND_API_KEY);
+        const contactEmail = import.meta.env.CONTACT_EMAIL || 'contacto@oppra.cl'; // Fallback por seguridad
 
-        const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
-        const CONTACT_EMAIL = import.meta.env.CONTACT_EMAIL || 'contacto@oppra.cl'; // Fallback or env var
-
-        if (!RESEND_API_KEY) {
-            console.error("Falta RESEND_API_KEY");
-            return new Response(JSON.stringify({
-                success: false,
-                message: 'Error de configuración del servidor (API Key missing).'
-            }), {
-                status: 500,
-                headers: { "Content-Type": "application/json" }
-            });
-        }
-
-        const resend = new Resend(RESEND_API_KEY);
-
+        // 3. Enviar el correo
         const { error } = await resend.emails.send({
-            from: 'OPPRA Web Form <onboarding@resend.dev>', // Update this if you have a verified domain
-            to: [CONTACT_EMAIL],
-            subject: `Nuevo Lead: ${name}`,
+            from: 'Web Oppra <send@oppra.cl>', // Usa el subdominio que configuraste
+            to: [contactEmail],
+            subject: `Nuevo Lead Web: ${data.name} (${data.service || 'General'})`,
             html: `
-                <h1>Nuevo Contacto desde la Web</h1>
-                <p><strong>Nombre:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Teléfono:</strong> ${phone || 'No especificado'}</p>
-                <p><strong>Mensaje:</strong></p>
-                <p>${message}</p>
-            `
+                <div style="font-family: sans-serif; color: #333;">
+                    <h2 style="color: #1e3a8a;">Nuevo Contacto desde la Web</h2>
+                    <p><strong>Nombre:</strong> ${data.name}</p>
+                    <p><strong>Empresa:</strong> ${data.company || 'No especificada'}</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>Teléfono:</strong> ${data.phone || 'No especificado'}</p>
+                    <p><strong>Servicio de Interés:</strong> ${data.service}</p>
+                    <hr style="border: 1px solid #eee; margin: 20px 0;" />
+                    <h3>Mensaje:</h3>
+                    <p style="background: #f9f9f9; padding: 15px; border-left: 4px solid #f59e0b;">${data.message}</p>
+                </div>
+            `,
+            replyTo: data.email, // Para que al dar "Responder" le escribas al cliente
         });
 
         if (error) {
-            console.error('Error enviando email:', error);
-            return new Response(JSON.stringify({
-                success: false,
-                message: 'Error al enviar el correo.'
-            }), {
-                status: 500,
-                headers: { "Content-Type": "application/json" }
-            });
+            console.error('Error Resend:', error);
+            return new Response(JSON.stringify({ success: false, message: 'Error al enviar correo.' }), { status: 500 });
         }
 
         return new Response(JSON.stringify({
             success: true,
             message: 'Mensaje enviado correctamente'
-        }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" }
-        });
+        }), { status: 200 });
 
     } catch (error) {
-        console.error('Error en API:', error);
+        console.error('Server Error:', error);
         return new Response(JSON.stringify({
             success: false,
             message: 'Error interno del servidor'
-        }), {
-            status: 500,
-            headers: { "Content-Type": "application/json" }
-        });
+        }), { status: 500 });
     }
 }
