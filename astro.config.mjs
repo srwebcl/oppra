@@ -2,23 +2,17 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import partytown from '@astrojs/partytown';
-import vercel from '@astrojs/vercel'; // <--- CAMBIO CLAVE: Sin '/serverless'
+import vercel from '@astrojs/vercel';
 
-// https://astro.build/config
 export default defineConfig({
+    site: 'https://www.oppra.cl', // <--- ¡ESTA ES LA LÍNEA MÁGICA QUE FALTABA!
     output: 'server',
     adapter: vercel({
-        webAnalytics: { enabled: true } // Opcional, pero recomendado
+        webAnalytics: { enabled: true },
     }),
     integrations: [
         react(),
-        tailwind({
-            applyBaseStyles: false,
-        }),
-        partytown({
-            config: {
-                forward: ['dataLayer.push'],
-            },
-        }),
+        tailwind({ applyBaseStyles: false }),
+        partytown({ config: { forward: ['dataLayer.push'] } }),
     ],
 });
