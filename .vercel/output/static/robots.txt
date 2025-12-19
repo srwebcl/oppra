@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://oppra.cl/sitemap-index.xml
