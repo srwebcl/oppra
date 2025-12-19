@@ -5,7 +5,7 @@ import partytown from '@astrojs/partytown';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-    site: 'https://www.oppra.cl', // <--- ¡ESTA ES LA LÍNEA MÁGICA QUE FALTABA!
+    site: 'https://www.oppra.cl',
     output: 'server',
     adapter: vercel({
         webAnalytics: { enabled: true },

@@ -13,8 +13,8 @@ export default {
                     DEFAULT: '#475569', // slate-600 (Gris Metálico)
                 },
                 accent: {
-                    DEFAULT: '#f59e0b', // amber-500 (Naranja/Amarillo Industrial)
-                    hover: '#d97706',
+                    DEFAULT: '#fe6307', // Official Brand Orange
+                    hover: '#e55604', // Darker brand orange
                 }
             },
             fontFamily: {
